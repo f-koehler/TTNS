@@ -26,8 +26,7 @@ public:
   template <typename... Args> void emplace_child(Args &&...args);
 
   bool is_root() const;
-  const std::vector<Node> &get_children() const;
-  std::vector<Node> &get_children();
+  std::size_t get_num_children() const;
   const DataType &get_data() const;
   DataType &get_data();
 
@@ -59,13 +58,8 @@ template <typename Data> bool Node<Data>::is_root() const {
   return m_parent == nullptr;
 }
 
-template <typename Data>
-const std::vector<Node<Data>> &Node<Data>::get_children() const {
-  return m_children;
-}
-
-template <typename Data> std::vector<Node<Data>> &Node<Data>::get_children() {
-  return m_children;
+template <typename Data> std::size_t Node<Data>::get_num_children() const {
+  return m_children.size();
 }
 
 template <typename Data>
@@ -155,8 +149,8 @@ template <typename NodeT> BFSIterator<NodeT> &BFSIterator<NodeT>::operator++() {
 
   auto node = m_queue.front();
   m_queue.pop();
-  for (auto &child : node->get_children()) {
-    m_queue.push(&child);
+  for (std::size_t i = 0; i < node->get_num_children(); ++i) {
+    m_queue.push(&node->operator[](i));
   }
   return *this;
 }
