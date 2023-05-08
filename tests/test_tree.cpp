@@ -1,5 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
+#include <TTNS/BFSIterator.hpp>
 #include <TTNS/Tree.hpp>
 
 #include <algorithm>
