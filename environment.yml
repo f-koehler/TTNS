@@ -1,0 +1,11 @@
+name: ttns-torch
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - pytorch
+  - cpuonly
+  - black
+  - isort
+  - conan
