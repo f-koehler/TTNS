@@ -5,15 +5,13 @@
 
 namespace TTNS {
 
-template <typename Data>
+template <typename Node>
 class BFIterator;
 
 template <typename Data>
 class Node {
   public:
     using DataType = Data;
-    using Iterator = BFIterator<Node>;
-    using ConstIterator = BFIterator<const Node>;
 
   private:
     Node *m_parent;
@@ -37,10 +35,10 @@ class Node {
     typename std::vector<Node>::iterator end();
     typename std::vector<Node>::const_iterator cbegin() const;
     typename std::vector<Node>::const_iterator cend() const;
-    Iterator begin_bf();
-    Iterator end_bf();
-    ConstIterator cbegin_bf() const;
-    ConstIterator cend_bf() const;
+    BFIterator<Node> begin_bf();
+    BFIterator<Node> end_bf();
+    BFIterator<const Node> cbegin_bf() const;
+    BFIterator<const Node> cend_bf() const;
 
     const Node &at(std::size_t index) const;
     Node &at(std::size_t index);
@@ -99,23 +97,23 @@ typename std::vector<Node<Data>>::const_iterator Node<Data>::cend() const {
 }
 
 template <typename Data>
-typename Node<Data>::Iterator Node<Data>::begin_bf() {
-    return Iterator(this);
+BFIterator<Node<Data>> Node<Data>::begin_bf() {
+    return BFIterator<Node<Data>>(this);
 }
 
 template <typename Data>
-typename Node<Data>::Iterator Node<Data>::end_bf() {
-    return Iterator(nullptr);
+BFIterator<Node<Data>> Node<Data>::end_bf() {
+    return BFIterator<Node<Data>>(nullptr);
 }
 
 template <typename Data>
-typename Node<Data>::ConstIterator Node<Data>::cbegin_bf() const {
-    return ConstIterator(this);
+BFIterator<const Node<Data>> Node<Data>::cbegin_bf() const {
+    return BFIterator<const Node<Data>>(this);
 }
 
 template <typename Data>
-typename Node<Data>::ConstIterator Node<Data>::cend_bf() const {
-    return ConstIterator(nullptr);
+BFIterator<const Node<Data>> Node<Data>::cend_bf() const {
+    return BFIterator<const Node<Data>>(nullptr);
 }
 
 template <typename Data>

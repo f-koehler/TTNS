@@ -10,8 +10,8 @@
 
 TEST_CASE("BFIterator", "[tree]") {
     using Node = TTNS::Node<int>;
-    static_assert(std::forward_iterator<Node::Iterator>);
-    static_assert(std::forward_iterator<Node::ConstIterator>);
+    static_assert(std::forward_iterator<TTNS::BFIterator<Node>>);
+    static_assert(std::forward_iterator<TTNS::BFIterator<const Node>>);
 
     TTNS::Node<int> root(1);
     root.emplace_child(2);
