@@ -29,6 +29,10 @@ public:
   const DataType &get_data() const;
   DataType &get_data();
 
+  typename std::vector<Node>::iterator begin();
+  typename std::vector<Node>::iterator end();
+  typename std::vector<Node>::const_iterator cbegin() const;
+  typename std::vector<Node>::const_iterator cend() const;
   Iterator begin_bf();
   Iterator end_bf();
   ConstIterator cbegin_bf() const;
@@ -68,6 +72,23 @@ const typename Node<Data>::DataType &Node<Data>::get_data() const {
 
 template <typename Data> typename Node<Data>::DataType &Node<Data>::get_data() {
   return m_data;
+}
+
+template <typename Data>
+typename std::vector<Node<Data>>::iterator Node<Data>::begin() {
+  return m_children.begin();
+}
+template <typename Data>
+typename std::vector<Node<Data>>::iterator Node<Data>::end() {
+  return m_children.end();
+}
+template <typename Data>
+typename std::vector<Node<Data>>::const_iterator Node<Data>::cbegin() const {
+  return m_children.cbegin();
+}
+template <typename Data>
+typename std::vector<Node<Data>>::const_iterator Node<Data>::cend() const {
+  return m_children.cend();
 }
 
 template <typename Data> typename Node<Data>::Iterator Node<Data>::begin_bf() {
