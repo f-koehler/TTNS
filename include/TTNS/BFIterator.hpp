@@ -1,5 +1,5 @@
-#ifndef TTNS_BFSITERATOR_HPP
-#define TTNS_BFSITERATOR_HPP
+#ifndef TTNS_BFITERATOR_HPP
+#define TTNS_BFITERATOR_HPP
 
 #include "Tree.hpp"
 
@@ -8,8 +8,8 @@
 namespace TTNS {
 
 template <typename NodeT>
-class BFSIterator {
-public:
+class BFIterator {
+  public:
     using NodeType = NodeT;
 
     using value_type = NodeType;
@@ -18,35 +18,35 @@ public:
     using pointer = NodeType *;
     using iterator_category = std::forward_iterator_tag;
 
-private:
+  private:
     std::queue<NodeType *> m_queue;
 
-public:
-    BFSIterator() = default;
-    explicit BFSIterator(NodeType *node);
-    virtual ~BFSIterator() = default;
+  public:
+    BFIterator() = default;
+    explicit BFIterator(NodeType *node);
+    virtual ~BFIterator() = default;
 
     NodeType &operator*() const;
-    BFSIterator &operator++();
-    BFSIterator operator++(int);
-    bool operator==(const BFSIterator &other) const;
-    bool operator!=(const BFSIterator &other) const;
+    BFIterator &operator++();
+    BFIterator operator++(int);
+    bool operator==(const BFIterator &other) const;
+    bool operator!=(const BFIterator &other) const;
 };
 
 template <typename NodeT>
-BFSIterator<NodeT>::BFSIterator(BFSIterator<NodeT>::NodeType *node) {
+BFIterator<NodeT>::BFIterator(BFIterator<NodeT>::NodeType *node) {
     if (node != nullptr) {
         m_queue.push(node);
     }
 }
 
 template <typename NodeT>
-typename BFSIterator<NodeT>::NodeType &BFSIterator<NodeT>::operator*() const {
+typename BFIterator<NodeT>::NodeType &BFIterator<NodeT>::operator*() const {
     return *m_queue.front();
 }
 
 template <typename NodeT>
-BFSIterator<NodeT> &BFSIterator<NodeT>::operator++() {
+BFIterator<NodeT> &BFIterator<NodeT>::operator++() {
     if (m_queue.empty()) {
         return *this;
     }
@@ -60,14 +60,14 @@ BFSIterator<NodeT> &BFSIterator<NodeT>::operator++() {
 }
 
 template <typename NodeT>
-BFSIterator<NodeT> BFSIterator<NodeT>::operator++(int) {
-    BFSIterator copy(*this);
+BFIterator<NodeT> BFIterator<NodeT>::operator++(int) {
+    BFIterator copy(*this);
     ++(*this);
     return copy;
 }
 
 template <typename NodeT>
-bool BFSIterator<NodeT>::operator==(const BFSIterator<NodeT> &other) const {
+bool BFIterator<NodeT>::operator==(const BFIterator<NodeT> &other) const {
     if (m_queue.empty() != other.m_queue.empty()) {
         return false;
     }
@@ -78,9 +78,9 @@ bool BFSIterator<NodeT>::operator==(const BFSIterator<NodeT> &other) const {
 }
 
 template <typename NodeT>
-bool BFSIterator<NodeT>::operator!=(const BFSIterator<NodeT> &other) const {
+bool BFIterator<NodeT>::operator!=(const BFIterator<NodeT> &other) const {
     return !(*this == other);
 }
 } // namespace TTNS
 
-#endif /* TTNS_BFSITERATOR_HPP */
+#endif /* TTNS_BFITERATOR_HPP */

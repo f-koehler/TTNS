@@ -6,14 +6,14 @@
 namespace TTNS {
 
 template <typename Data>
-class BFSIterator;
+class BFIterator;
 
 template <typename Data>
 class Node {
   public:
     using DataType = Data;
-    using Iterator = BFSIterator<Node>;
-    using ConstIterator = BFSIterator<const Node>;
+    using Iterator = BFIterator<Node>;
+    using ConstIterator = BFIterator<const Node>;
 
   private:
     Node *m_parent;

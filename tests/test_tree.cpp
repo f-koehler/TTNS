@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include <TTNS/BFSIterator.hpp>
+#include <TTNS/BFIterator.hpp>
 #include <TTNS/Tree.hpp>
 
 #include <algorithm>
@@ -8,7 +8,7 @@
 #include <iterator>
 #include <vector>
 
-TEST_CASE("BFSIterator", "[tree]") {
+TEST_CASE("BFIterator", "[tree]") {
     using Node = TTNS::Node<int>;
     static_assert(std::forward_iterator<Node::Iterator>);
     static_assert(std::forward_iterator<Node::ConstIterator>);
