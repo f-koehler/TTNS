@@ -8,6 +8,9 @@ namespace TTNS {
 template <typename Node>
 class BFIterator;
 
+template <typename Node>
+class DFIterator;
+
 template <typename Data>
 class Node {
   public:
@@ -39,6 +42,10 @@ class Node {
     BFIterator<Node> end_bf();
     BFIterator<const Node> cbegin_bf() const;
     BFIterator<const Node> cend_bf() const;
+    DFIterator<Node> begin_df();
+    DFIterator<Node> end_df();
+    DFIterator<const Node> cbegin_df() const;
+    DFIterator<const Node> cend_df() const;
 
     const Node &at(std::size_t index) const;
     Node &at(std::size_t index);
@@ -114,6 +121,26 @@ BFIterator<const Node<Data>> Node<Data>::cbegin_bf() const {
 template <typename Data>
 BFIterator<const Node<Data>> Node<Data>::cend_bf() const {
     return BFIterator<const Node<Data>>(nullptr);
+}
+
+template <typename Data>
+DFIterator<Node<Data>> Node<Data>::begin_df() {
+    return DFIterator<Node<Data>>(this);
+}
+
+template <typename Data>
+DFIterator<Node<Data>> Node<Data>::end_df() {
+    return DFIterator<Node<Data>>(nullptr);
+}
+
+template <typename Data>
+DFIterator<const Node<Data>> Node<Data>::cbegin_df() const {
+    return DFIterator<const Node<Data>>(this);
+}
+
+template <typename Data>
+DFIterator<const Node<Data>> Node<Data>::cend_df() const {
+    return DFIterator<const Node<Data>>(nullptr);
 }
 
 template <typename Data>
