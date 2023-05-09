@@ -29,10 +29,10 @@ public:
   const DataType &get_data() const;
   DataType &get_data();
 
-  Iterator begin();
-  Iterator end();
-  ConstIterator cbegin() const;
-  ConstIterator cend() const;
+  Iterator begin_bf();
+  Iterator end_bf();
+  ConstIterator cbegin_bf() const;
+  ConstIterator cend_bf() const;
 
   const Node &at(std::size_t index) const;
   Node &at(std::size_t index);
@@ -70,21 +70,21 @@ template <typename Data> typename Node<Data>::DataType &Node<Data>::get_data() {
   return m_data;
 }
 
-template <typename Data> typename Node<Data>::Iterator Node<Data>::begin() {
+template <typename Data> typename Node<Data>::Iterator Node<Data>::begin_bf() {
   return Iterator(this);
 }
 
-template <typename Data> typename Node<Data>::Iterator Node<Data>::end() {
+template <typename Data> typename Node<Data>::Iterator Node<Data>::end_bf() {
   return Iterator(nullptr);
 }
 
 template <typename Data>
-typename Node<Data>::ConstIterator Node<Data>::cbegin() const {
+typename Node<Data>::ConstIterator Node<Data>::cbegin_bf() const {
   return ConstIterator(this);
 }
 
 template <typename Data>
-typename Node<Data>::ConstIterator Node<Data>::cend() const {
+typename Node<Data>::ConstIterator Node<Data>::cend_bf() const {
   return ConstIterator(nullptr);
 }
 

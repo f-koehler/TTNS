@@ -35,16 +35,16 @@ TEST_CASE("BFSIterator", "[tree]") {
   root[2][0].emplace_child(12);
   REQUIRE(root[2][0].get_num_children() == 2);
 
-  SECTION("begin() and end()") {
+  SECTION("BF iteration with Iterator") {
     std::vector<int> result;
-    std::transform(root.begin(), root.end(), std::back_inserter(result),
+    std::transform(root.begin_bf(), root.end_bf(), std::back_inserter(result),
                    [](Node &node) { return node.get_data(); });
     REQUIRE(result == std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12});
   }
 
-  SECTION("cbegin() and cend()") {
+  SECTION("BF iteration with ConstIterator") {
     std::vector<int> result;
-    std::transform(root.cbegin(), root.cend(), std::back_inserter(result),
+    std::transform(root.cbegin_bf(), root.cend_bf(), std::back_inserter(result),
                    [](const Node &node) { return node.get_data(); });
     REQUIRE(result == std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12});
   }
