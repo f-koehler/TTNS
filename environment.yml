@@ -1,11 +1,12 @@
 name: ttns-torch
 channels:
-  - pytorch
-  - nvidia
-  - conda-forge
+    - pytorch
+    - nvidia
+    - conda-forge
 dependencies:
-  - pytorch
-  - cpuonly
-  - black
-  - isort
-  - conan
+    - pytorch
+    - cpuonly
+    - black
+    - isort
+    - conan
+    - pre-commit
