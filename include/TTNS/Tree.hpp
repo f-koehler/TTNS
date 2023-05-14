@@ -53,6 +53,8 @@ class Node {
 
     const Node &operator[](std::size_t index) const;
     Node &operator[](std::size_t index);
+
+    Node &operator<<(Node &&node);
 };
 
 template <typename Data>
@@ -166,6 +168,11 @@ const Node<Data> &Node<Data>::operator[](std::size_t index) const {
 template <typename Data>
 Node<Data> &Node<Data>::operator[](std::size_t index) {
     return m_children[index];
+}
+template <typename Data>
+Node<Data> &Node<Data>::operator<<(Node &&node) {
+    push_child(std::move(node));
+    return *this;
 }
 
 } // namespace TTNS
