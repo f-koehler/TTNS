@@ -28,6 +28,7 @@ class Node {
 
     template <typename... Args>
     void emplace_child(Args &&...args);
+    void push_child(Node &&node);
 
     bool is_root() const;
     std::size_t get_num_children() const;
@@ -63,6 +64,12 @@ template <typename Data>
 template <typename... Args>
 void Node<Data>::emplace_child(Args &&...args) {
     m_children.emplace_back(std::forward<Args>(args)...);
+    m_children.back().m_parent = this;
+}
+
+template <typename Data>
+void Node<Data>::push_child(Node &&node) {
+    m_children.push_back(std::move(node));
     m_children.back().m_parent = this;
 }
 
