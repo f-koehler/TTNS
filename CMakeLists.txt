@@ -12,7 +12,7 @@ if(NOT ttns_ipo_supported)
     message(WARNING "IPO/LTO not supported: ${ttns_ipo_output}")
 endif()
 
-# find_package(Torch CONFIG REQUIRED)
+find_package(Torch CONFIG REQUIRED)
 
 # add_library(ttns
 #     include/TTNS/Tree.cpp
@@ -30,6 +30,18 @@ endif()
 # target_compile_options(main PRIVATE ${TORCH_CXX_FLAGS})
 # target_include_directories(main SYSTEM PRIVATE ${TORCH_INCLUDE_DIRS})
 # target_link_libraries(main "${TORCH_LIBRARIES}")
+
+add_executable(main
+    src/main.cpp
+)
+target_compile_options(main PRIVATE ${TORCH_CXX_FLAGS})
+target_include_directories(main SYSTEM PRIVATE ${TORCH_INCLUDE_DIRS})
+target_include_directories(main PUBLIC include)
+target_link_libraries(main "${TORCH_LIBRARIES}")
+if(ttns_ipo_supported)
+    set_target_properties(main PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
+endif()
+
 
 add_executable(tests
     tests/test_tree.cpp
